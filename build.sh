@@ -1,13 +1,17 @@
 #!/bin/bash
 
-set +e # Allow the next command to fail
+set -e
 APP_DIR=/app
 
 echo "Building the app..."
 cd /src
-ln -s /meteor_build_cache /src/.meteor/local
-meteor build --directory ${APP_DIR}
 
+if [ ! -d /src/.meteor/local ]; then
+  ln -s /meteor_build_cache /src/.meteor/local
+fi
+
+set +e # Allow the next command to fail
+meteor build --directory ${APP_DIR}
 if [ $? -ne 0  ]; then
   echo "Building the bundle (old version)..."
   set -e
@@ -20,7 +24,7 @@ set -e
 # Install NPM modules
 APP_DIR=${APP_DIR}/bundle
 echo "Installing NPM prerequisites..."
-ln -s /node_modules_cache ${APP_DIR}/programs/server/node_modules
-pushd ${APP_DIR}/programs/server/
-npm install
-popd
+if [ ! -d ${APP_DIR}/programs/server/node_modules ]; then
+  ln -s /node_modules_cache ${APP_DIR}/programs/server/node_modules
+fi
+cd ${APP_DIR}/programs/server/node_modules && npm install
