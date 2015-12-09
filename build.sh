@@ -7,8 +7,8 @@ echo "Building the app..."
 cd /src
 
 if [ -e /meteor_build_cache/meteor ]; then
-  rm -rf /root/.meteor
-  ln -s /meteor_build_cache /root/.meteor /root/.meteor
+  rm -rf ~/.meteor
+  ln -s /meteor_build_cache ~/.meteor
 fi
 
 set +e # Allow the next command to fail
@@ -35,3 +35,7 @@ cd ${APP_DIR}/programs/server && cnpm install
 #rm ${APP_DIR}/programs/server/node_modules
 #mkdir ${APP_DIR}/programs/server/node_modules
 #cp -r /node_modules_cache/* ${APP_DIR}/programs/server/node_modules/
+
+# uninstall meteor
+rm -rf ~/.meteor
+rm /usr/local/bin/meteor

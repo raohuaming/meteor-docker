@@ -5,7 +5,7 @@ RUN curl https://install.meteor.com/ |sh
 
 # install some tools
 RUN npm install -g forever
-RUN npm install -g cnpm --registry=http://registry.npm.taobao.org
+RUN npm install -g cnpm
 
 # Install scripts
 ADD run.sh /run.sh
