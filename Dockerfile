@@ -18,12 +18,7 @@ RUN chmod +x /run.sh
 ADD build.sh /build.sh
 RUN chmod +x /build.sh
 
-# add user
-RUN useradd -ms /bin/bash meteoruser
-USER meteoruser
-WORKDIR /home/meteoruser/src
-
-VOLUME [ "/home/meteoruser" ]
+VOLUME [ "/root" ]
 CMD ["/bin/bash", "/run.sh"]
 
 # build

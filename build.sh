@@ -2,7 +2,7 @@
 
 set -e
 SRC_DIR=/src
-BUILD_DIR=/tmp
+BUILD_DIR=/dest
 
 echo "Building the app..."
 cd ${SRC_DIR}

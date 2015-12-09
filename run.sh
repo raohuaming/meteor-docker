@@ -2,7 +2,7 @@
 
 # extracted from https://github.com/CyCoreSystems/docker-meteor/blob/master/entrypoint.sh
 set -e
-BUILD_DIR=/tmp
+BUILD_DIR=/dest
 
 if [ ! -d ${BUILD_DIR}/bundle ]; then
   /bin/bash /build.sh
