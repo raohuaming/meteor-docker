@@ -6,6 +6,9 @@ APP_DIR=/app
 echo "Building the app..."
 cd /src
 
+if [ -e /meteor_build_cache/meteor ]; then
+  cp -r /meteor_build_cache/* /root/.meteor/
+fi
 set +e # Allow the next command to fail
 meteor build --directory ${APP_DIR}
 if [ $? -ne 0  ]; then
@@ -15,8 +18,8 @@ if [ $? -ne 0  ]; then
   meteor bundle bundle.tar.gz
   tar xf bundle.tar.gz -C ${APP_DIR}
 fi
-
 set -e
+mv -f /root/.meteor/* /meteor_build_cache/
 # Install NPM modules
 APP_DIR=${APP_DIR}/bundle
 if [ -d ${APP_DIR}/programs/server/node_modules ]; then
