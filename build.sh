@@ -6,10 +6,6 @@ APP_DIR=/app
 echo "Building the app..."
 cd /src
 
-if [ ! -d /src/.meteor/local ]; then
-  ln -s /meteor_build_cache /src/.meteor/local
-fi
-
 set +e # Allow the next command to fail
 meteor build --directory ${APP_DIR}
 if [ $? -ne 0  ]; then
