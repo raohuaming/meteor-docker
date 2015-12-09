@@ -17,8 +17,7 @@ RUN chmod +x /build.sh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN npm cache clear
 
-VOLUME /node_modules_cache
-VOLUME /root/.meteor
+VOLUME [ "/node_modules_cache", "/root/.meteor" ]
 CMD ["/bin/bash", "/run.sh"]
 
 # build
