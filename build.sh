@@ -23,8 +23,4 @@ fi
 set -e
 # Install NPM modules
 APP_DIR=${APP_DIR}/bundle
-echo "Installing NPM prerequisites..."
-if [ ! -d ${APP_DIR}/programs/server/node_modules ]; then
-  ln -s /node_modules_cache ${APP_DIR}/programs/server/node_modules
-fi
-cd ${APP_DIR}/programs/server/node_modules && npm install
+cd ${APP_DIR}/programs/server && npm install
