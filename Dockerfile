@@ -8,19 +8,22 @@ RUN npm install -g forever
 RUN npm install -g cnpm
 RUN npm install -g phantomjs
 
+# cleaning
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN npm cache clear
+
 # Install scripts
 ADD run.sh /run.sh
 RUN chmod +x /run.sh
 ADD build.sh /build.sh
 RUN chmod +x /build.sh
-ADD test.sh /test.sh
-RUN chmod +x /test.sh
 
-# cleaning
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN npm cache clear
+# add user
+RUN useradd -ms /bin/bash meteoruser
+USER meteoruser
+WORKDIR /home/meteoruser/src
 
-VOLUME [ "/meteor_build_cache" ]
+VOLUME [ "/home/meteoruser" ]
 CMD ["/bin/bash", "/run.sh"]
 
 # build
