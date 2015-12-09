@@ -5,7 +5,6 @@ RUN curl https://install.meteor.com/ |sh
 
 # install some tools
 RUN npm install -g forever
-RUN npm install -g mup
 
 # Install scripts
 ADD run.sh /run.sh
