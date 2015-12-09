@@ -12,4 +12,4 @@ APP_DIR=${APP_DIR}/bundle
 # Run meteor
 cd ${APP_DIR}
 echo "Starting Meteor..."
-forever start --uid image-transcription --append --minUptime 1000 --spinSleepTime 1000 main.js && forever logs -f 0
+forever start --uid image-transcription --append --minUptime 1000 --spinSleepTime 1000 main.js && sleep 3; forever logs -f 0
