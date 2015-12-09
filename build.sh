@@ -25,12 +25,13 @@ if [ ! -e /meteor_build_cache/meteor ]; then
   mv -f /root/.meteor/* /meteor_build_cache/
 fi
 # Install NPM modules
+echo "Install NPM modules"
 APP_DIR=${APP_DIR}/bundle
-if [ -d ${APP_DIR}/programs/server/node_modules ]; then
-  rm -rf ${APP_DIR}/programs/server/node_modules
-fi
-ln -s /node_modules_cache ${APP_DIR}/programs/server/node_modules
-cd ${APP_DIR}/programs/server && npm install
-rm ${APP_DIR}/programs/server/node_modules
-mkdir ${APP_DIR}/programs/server/node_modules
-cp -r /node_modules_cache/* ${APP_DIR}/programs/server/node_modules/
+#if [ -d ${APP_DIR}/programs/server/node_modules ]; then
+  #rm -rf ${APP_DIR}/programs/server/node_modules
+#fi
+#ln -s /node_modules_cache ${APP_DIR}/programs/server/node_modules
+cd ${APP_DIR}/programs/server && cnpm install
+#rm ${APP_DIR}/programs/server/node_modules
+#mkdir ${APP_DIR}/programs/server/node_modules
+#cp -r /node_modules_cache/* ${APP_DIR}/programs/server/node_modules/
