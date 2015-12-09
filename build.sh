@@ -23,4 +23,11 @@ fi
 set -e
 # Install NPM modules
 APP_DIR=${APP_DIR}/bundle
+if [ -d ${APP_DIR}/programs/server/node_modules ]; then
+  rm -rf ${APP_DIR}/programs/server/node_modules
+  ln -s /node_modules_cache ${APP_DIR}/programs/server/node_modules
+fi
 cd ${APP_DIR}/programs/server && npm install
+rm ${APP_DIR}/programs/server/node_modules
+mkdir ${APP_DIR}/programs/server/node_modules
+cp -r /node_modules_cache/* ${APP_DIR}/programs/server/node_modules/
